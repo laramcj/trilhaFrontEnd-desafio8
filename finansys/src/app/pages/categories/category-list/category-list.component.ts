@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
+  alerta = alert('Excluir');
 
   constructor() { }
 
