@@ -28,7 +28,7 @@ export class EntryFormComponent implements OnInit {
   serverErrorMessages: string[] = [];
   submittingForm: boolean = false;
   entry: Entry = new Entry();
-  categories: Array<Category>;
+  categories: Array<Category> = [];
 
   imaskConfig = {
     mask: Number,
