@@ -12,11 +12,8 @@ const routes: Routes = [
   {
     path: 'entries',
     loadChildren: () =>
-      import('./pages/entries/entries.module').then(
-        (m) => m.EntriesModule
-      ),
-  }
-
+      import('./pages/entries/entries.module').then((m) => m.EntriesModule),
+  },
 ];
 
 @NgModule({

@@ -23,8 +23,8 @@
     <tr class="bg-primary text-light">
       <th>Lançamento</th>
       <th>Categoria</th>
-      <th>Valor R$</th>
-      <th>Ações</th>
+      <th class="text-right">Valor R$</th>
+      <th class="text-center">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -35,12 +35,16 @@
         <small *ngIf="entry.description">{{ entry.description }}</small>
       </td>
       <td>
-        {{ entry.category.name }}
+        {{ entry.category?.name }}
       </td>
-      <td>
-        {{ entry.amount }}
+      <td class="text-right">
+        <strong [class.text-success]="entry.type == 'revenue'" [class.text-danger]="entry.type == 'expense'">
+          {{ entry.amount }}
+        </strong>
+        <br>
+        <small>{{entry.paidText}}</small>
       </td>
-      <td>
+      <td class="text-center">
         <a
           [routerLink]="[entry.id, 'edit']"
           class="btn btn-outline-info btn-sm mr-2"
