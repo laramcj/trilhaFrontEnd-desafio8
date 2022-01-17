@@ -142,6 +142,7 @@ export class EntryFormComponent implements OnInit {
 
   private buildEntryForm() {
     this.entryForm = this.formBuider.group({
+      user_id: [null],
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: [null],
