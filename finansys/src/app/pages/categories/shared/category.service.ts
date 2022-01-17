@@ -10,32 +10,50 @@ import { Category } from './category.model';
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiPath: string = 'api/categories';
+  private apiPath = "https://p38yx781aa.execute-api.us-east-1.amazonaws.com/Stage/categorias";
 
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Category[]> {
     return this.http
-      .get(this.apiPath)
+      .get(this.apiPath + '?user_id=lara_correa')
       .pipe(catchError(this.handleError), map(this.jsonDataToCategories));
   }
 
   getById(id: number): Observable<Category> {
-    const url = `${this.apiPath}/${id}`;
+    const url = `${this.apiPath}/${id}` + '?user_id=lara_correa';
 
     return this.http
       .get(url)
       .pipe(catchError(this.handleError), map(this.jsonDataToCategory));
   }
 
+  /* // tentativa de criar id através do número de itens na string---não deu certo!!
+  create(category: Category) {
+    const categories: Category[] = [];
+     this.getAll().subscribe(
+      (categories) => (
+        category.user_id = "lara_correa",
+        category.id = (categories.length + 1).toString(),
+        this.http
+        .post(this.apiPath + '?user_id=lara_correa', category)
+        .pipe(catchError(this.handleError), map(this.jsonDataToCategory))),
+      (error) => alert('Erro ao carregar a lista')
+    );
+  } */
+
   create(category: Category): Observable<Category> {
+    category.user_id = "lara_correa"
+    category.id = Math.ceil(Math.random()*100).toString()
+    
     return this.http
-      .post(this.apiPath, category)
+      .post(this.apiPath + '?user_id=lara_correa', category)
       .pipe(catchError(this.handleError), map(this.jsonDataToCategory));
   }
 
   update(category: Category): Observable<Category> {
-    const url = `${this.apiPath}/${category.id}`;
+    //const url = `${this.apiPath}/${category.id}` + '?user_id=lara_correa';
+    const url = `${this.apiPath}` 
 
     return this.http.put(url, category).pipe(
       catchError(this.handleError),
@@ -44,7 +62,7 @@ export class CategoryService {
   }
 
   delete(id: number): Observable<any> {
-    const url = `${this.apiPath}/${id}`;
+    const url = `${this.apiPath}` + '?user_id=lara_correa&id=' + `${id}`;
 
     return this.http.delete(url).pipe(
       catchError(this.handleError),

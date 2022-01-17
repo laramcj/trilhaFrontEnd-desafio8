@@ -92,6 +92,7 @@ export class EntryFormComponent implements OnInit {
     private categoryService: CategoryService
   ) {
     this.entryForm = new FormGroup({
+      user_id: new FormControl(null),
       id: new FormControl(null),
       name: new FormControl(null, [
         Validators.required,

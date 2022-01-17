@@ -33,6 +33,7 @@ export class CategoryFormComponent implements OnInit {
     private formBuider: FormBuilder
   ) {
     this.categoryForm = new FormGroup({
+      user_id: new FormControl(null),
       id: new FormControl(null),
       name: new FormControl(null, [
         Validators.required,
@@ -67,6 +68,7 @@ export class CategoryFormComponent implements OnInit {
 
   private buildCategoryForm() {
     this.categoryForm = this.formBuider.group({
+      user_id : "lara_correa",
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: [null],
