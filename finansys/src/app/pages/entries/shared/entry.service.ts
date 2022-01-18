@@ -8,11 +8,13 @@ import { CategoryService } from '../../categories/shared/category.service';
 
 import { Entry } from './entry.model';
 
+import { environment } from "../../../../environments/environment";
+
 @Injectable({
   providedIn: 'root',
 })
 export class EntryService {
-  private apiPath = "https://p38yx781aa.execute-api.us-east-1.amazonaws.com/Stage/lancamentos";
+  private apiPath = environment.baseUrl + "/lancamentos";
 
   constructor(
     private http: HttpClient,

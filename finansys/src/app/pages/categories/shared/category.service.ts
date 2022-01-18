@@ -5,12 +5,14 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
 
 import { Category } from './category.model';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiPath = "https://p38yx781aa.execute-api.us-east-1.amazonaws.com/Stage/categorias";
+  private apiPath = environment.baseUrl + "/categorias";
 
   constructor(private http: HttpClient) {}
 
